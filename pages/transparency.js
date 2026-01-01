@@ -33,7 +33,7 @@ export default function Transparency() {
         <h2 className="h2">Subscription Plans</h2>
         <ul className="rules">
           <li>Base Plan: 3% – 5% monthly return.</li>
-          <li>Advanced Plan: 4% – 6% monthly return.</li>
+          <li>Advanced Plan: 5% – 7% monthly return.</li>
           <li>Subscription fees are non-refundable.</li>
           <li>Returns are calculated monthly.</li>
         </ul>

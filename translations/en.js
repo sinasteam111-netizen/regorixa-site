@@ -26,9 +26,9 @@ const en = {
 
   advancedPlanTitle: "Advanced Plan",
   advancedPlanBullets: [
-    "Monthly Profit: 4% – 6%",
+    "Monthly Profit: 5% – 7%",
     "Subscription Fee: 200 USDT",
-    "Minimum investment: 100 USDT",
+    "Minimum investment: 300 USDT",
     "Priority withdrawal processing",
   ],
 
