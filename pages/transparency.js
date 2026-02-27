@@ -1,59 +1,115 @@
 import Nav from "../components/Nav";
 import { useLanguage } from "../context/LanguageContext";
+import translations from "../translations";
 
 export default function Transparency() {
-  const { dir } = useLanguage();
+  const { lang, dir } = useLanguage();
+  const base = translations.en || {};
+  const current = translations[lang] || base;
+  const t = { ...base, ...current };
+
+  const rules = Array.isArray(t.rules) ? t.rules : [];
 
   return (
     <div className="container" dir={dir} style={{ textAlign: dir === "rtl" ? "right" : "left" }}>
       <Nav />
 
-      <div className="hero">
-        <h1 className="h1">Transparency & Terms</h1>
-        <p className="subtitle">
-          REGORIXA operates with transparency, responsibility, and clear investment rules.
+      {/* HERO */}
+      <div className="glass section" style={{ marginTop: 24, padding: 28 }}>
+        <div className="tagRow" style={{ marginBottom: 14 }}>
+          <span className="tag">{t.transparencyTag}</span>
+          <span className="muted" style={{ fontSize: 12 }}>
+            {t.transparencyTagline}
+          </span>
+        </div>
+
+        <h1 style={{ margin: 0, fontSize: 34, lineHeight: 1.2 }}>
+          {t.transparencyTitle}
+        </h1>
+
+        <p className="p" style={{ marginTop: 12, maxWidth: 900 }}>
+          {t.transparencyIntro}
         </p>
+
+        <div className="btnRow" style={{ marginTop: 16 }}>
+          <a className="btnGhost" href="/legal">{t.readLegal}</a>
+          <a className="btnGhost" href="/faq">{t.heroFaq}</a>
+        </div>
       </div>
 
-      <div className="section">
-        <h2 className="h2">Investment Rules</h2>
-        <ul className="rules">
-          <li>Minimum investment amount is 100 USDT.</li>
-          <li>Investment can only be increased in increments of 100 USDT.</li>
-          <li>Principal funds are locked for a minimum of 2 months.</li>
-          <li>
-            Withdrawal requests can be submitted within 2 days after receiving the second monthly
-            profit.
-          </li>
-          <li>Approved withdrawals are processed within 24 hours.</li>
+      {/* RULES */}
+      <div className="sectionBox" style={{ marginTop: 18 }}>
+        <h3 style={{ marginTop: 0 }}>{t.transparencyRulesTitle}</h3>
+        <ul style={{ opacity: 0.92, lineHeight: 1.8 }}>
+          {rules.map((r, i) => <li key={i}>{r}</li>)}
         </ul>
       </div>
 
-      <div className="section">
-        <h2 className="h2">Subscription Plans</h2>
-        <ul className="rules">
-          <li>Base Plan: 3% – 5% monthly return.</li>
-          <li>Advanced Plan: 5% – 7% monthly return.</li>
-          <li>Subscription fees are non-refundable.</li>
-          <li>Returns are calculated monthly.</li>
-        </ul>
+      {/* TIMELINE */}
+      <div className="sectionBox" style={{ marginTop: 18 }}>
+        <h3 style={{ marginTop: 0 }}>{t.transparencyTimelineTitle}</h3>
+
+        <div className="timeline">
+          <div className="timelineItem liftCard">
+            <div className="timelineTop">
+              <span className="badge">{t.timelineDay0}</span>
+              <div className="timelineTitle">{t.timelineStartTitle}</div>
+            </div>
+            <div className="muted">{t.timelineStartText}</div>
+          </div>
+
+          <div className="timelineItem liftCard">
+            <div className="timelineTop">
+              <span className="badge">{t.timelineMonth1}</span>
+              <div className="timelineTitle">{t.timelineCycle1Title}</div>
+            </div>
+            <div className="muted">{t.timelineCycle1Text}</div>
+          </div>
+
+          <div className="timelineItem liftCard">
+            <div className="timelineTop">
+              <span className="badge">{t.timelineMonth2}</span>
+              <div className="timelineTitle">{t.timelineLockTitle}</div>
+            </div>
+            <div className="muted">{t.timelineLockText}</div>
+          </div>
+
+          <div className="timelineItem liftCard">
+            <div className="timelineTop">
+              <span className="badge">{t.timelineWindow}</span>
+              <div className="timelineTitle">{t.timelineWithdrawTitle}</div>
+            </div>
+            <div className="muted">{t.timelineWithdrawText}</div>
+          </div>
+        </div>
       </div>
 
-      <div className="section">
-        <h2 className="h2">Risk Disclosure</h2>
-        <p className="p">
-          Cryptocurrency investments involve risk. REGORIXA does not guarantee profits and users
-          acknowledge the possibility of financial loss.
-        </p>
+      {/* DO / DON'T */}
+      <div className="sectionBox" style={{ marginTop: 18 }}>
+        <h3 style={{ marginTop: 0 }}>{t.transparencyDoDontTitle}</h3>
+
+        <div className="twoCol">
+          <div className="glassMini liftCard">
+            <div className="legalTitle">{t.transparencyDo}</div>
+            <ul className="planList">
+              <li>{t.doItem1}</li>
+              <li>{t.doItem2}</li>
+              <li>{t.doItem3}</li>
+            </ul>
+          </div>
+
+          <div className="glassMini liftCard">
+            <div className="legalTitle">{t.transparencyDont}</div>
+            <ul className="planList">
+              <li>{t.dontItem1}</li>
+              <li>{t.dontItem2}</li>
+              <li>{t.dontItem3}</li>
+            </ul>
+          </div>
+        </div>
       </div>
 
-      <div className="section">
-        <h2 className="h2">Commitment</h2>
-        <p className="p">
-          REGORIXA is committed to responsible fund management, system transparency, and timely
-          processing of valid withdrawal requests.
-        </p>
-      </div>
+      <div style={{ height: 26 }} />
     </div>
   );
 }

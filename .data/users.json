@@ -1,0 +1,144 @@
+[
+  {
+    "id": "0571d3d8-f5be-4fe5-b7ef-ffa4112431f7",
+    "firstName": "admin",
+    "lastName": "admin",
+    "birthDate": "2026-01-01",
+    "phone": "100716866",
+    "email": "regorixa@gmail.com",
+    "passwordHash": "$2b$12$1QoMKaEdP77May.1QsHDfO6E1D3fBE/KdRtWacfzkmVLNDvR8RcSW",
+    "createdAt": "2026-01-06T13:44:10.911Z",
+    "emailVerified": true,
+    "role": "admin",
+    "resetOtpHash": null,
+    "resetOtpExpiresAt": null,
+    "securityLog": [
+      {
+        "id": "b89f1d59-032a-4591-8ff2-da7e6af8399b",
+        "at": "2026-02-24T09:57:23.542Z",
+        "event": "login_password",
+        "ok": true,
+        "ip": "127.0.0.1",
+        "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36",
+        "detail": "session_issued"
+      },
+      {
+        "id": "17010a7c-e800-4eb3-a1a3-86cb16c524b1",
+        "at": "2026-02-17T12:32:15.833Z",
+        "event": "login_password",
+        "ok": false,
+        "ip": "127.0.0.1",
+        "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36",
+        "detail": "invalid_credentials"
+      },
+      {
+        "id": "69d9ad9c-042c-4116-b682-c54834b34f30",
+        "at": "2026-02-10T12:22:37.055Z",
+        "event": "login_password",
+        "ok": true,
+        "ip": "127.0.0.1",
+        "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36",
+        "detail": "session_issued"
+      },
+      {
+        "id": "07a90d66-b74c-4b2d-9cf5-d73dad69b037",
+        "at": "2026-02-10T12:22:25.122Z",
+        "event": "login_password",
+        "ok": false,
+        "ip": "127.0.0.1",
+        "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36",
+        "detail": "invalid_credentials"
+      },
+      {
+        "id": "00e87c0e-d804-4646-bad1-3028d05449ac",
+        "at": "2026-01-28T10:20:28.682Z",
+        "event": "login_password",
+        "ok": false,
+        "ip": "::1",
+        "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36",
+        "detail": "invalid_credentials"
+      },
+      {
+        "id": "6768a8ee-4afd-4afc-9b98-4e31b0d708ec",
+        "at": "2026-01-25T15:52:40.920Z",
+        "event": "login_password",
+        "ok": false,
+        "ip": "::1",
+        "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36",
+        "detail": "invalid_credentials"
+      },
+      {
+        "id": "9490d3b0-c5bb-4df7-9e7b-37dc226f5345",
+        "at": "2026-01-25T13:18:14.442Z",
+        "event": "login_password",
+        "ok": false,
+        "ip": "::1",
+        "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36",
+        "detail": "invalid_credentials"
+      }
+    ],
+    "lastLoginIp": "127.0.0.1",
+    "lastLoginUa": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36",
+    "lastLoginAt": "2026-02-24T09:57:23.541Z",
+    "twoFactorTempSecret": "N5HW4M2NJEXDOMRZGA2CS5SULBVXK6CR",
+    "freeBaseClaimed": true,
+    "freeBaseClaimedAt": "2026-01-29T14:17:13.899Z",
+    "freeBaseAllowed": true,
+    "freeBaseAllowedAt": "2026-02-27T13:57:00.161Z",
+    "updatedAt": "2026-02-27T13:57:00.161Z",
+    "twoFactorSetupAt": "2026-02-24T11:47:27.995Z",
+    "twoFactorSetupIp": "::1",
+    "twoFactorSetupUa": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36",
+    "passwordChangedAt": "2026-02-24T11:48:16.241Z",
+    "passwordChangedBy": "change_password"
+  },
+  {
+    "id": "015946b0-1720-4f91-93fb-00fdf899a975",
+    "firstName": "sina",
+    "lastName": "hashemi",
+    "birthDate": "2026-01-23",
+    "phone": "09391378114",
+    "email": "sinahashemi371@gmail.com",
+    "passwordHash": "$2b$12$BgsZv45BNR.nJLaW/q2cFOsqEt6yDvLRy3OI5JcXRIcqL4iB2gH0q",
+    "createdAt": "2026-01-23T13:19:35.862Z",
+    "emailVerified": true,
+    "role": "user"
+  },
+  {
+    "id": "d9d74abb-8b59-4c8d-87a8-1a15db28c138",
+    "firstName": "sina",
+    "lastName": "hashemi",
+    "birthDate": "1999-02-04",
+    "phone": "09391378114",
+    "email": "sinasteam111@gmail.com",
+    "passwordHash": "$2b$12$kX6BFjmNBgq89RTiRF738OnjOVkdJWjYPelt1B9lw4QXhB6HHwvWq",
+    "createdAt": "2026-02-17T12:35:01.916Z",
+    "emailVerified": true,
+    "role": "user",
+    "lastRegisterIp": "::1",
+    "lastRegisterUa": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36",
+    "securityLog": [
+      {
+        "id": "c2247772-529a-4b89-94d5-5116686889ff",
+        "at": "2026-02-17T12:35:43.026Z",
+        "event": "login_password",
+        "ok": true,
+        "ip": "127.0.0.1",
+        "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36",
+        "detail": "session_issued"
+      },
+      {
+        "id": "6cffa97a-f8aa-4489-ba6f-55b73802bc54",
+        "at": "2026-02-17T12:35:37.931Z",
+        "event": "login_password",
+        "ok": false,
+        "ip": "127.0.0.1",
+        "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36",
+        "detail": "invalid_credentials"
+      }
+    ],
+    "lastLoginIp": "127.0.0.1",
+    "lastLoginUa": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36",
+    "lastLoginAt": "2026-02-17T12:35:43.025Z"
+  }
+]

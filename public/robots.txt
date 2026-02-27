@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+
+# جلوگیری از ایندکس API
+Disallow: /api/
+
+# جلوگیری از ایندکس داشبورد و صفحات خصوصی
+Disallow: /dashboard
+Disallow: /admin
+
+Sitemap: https://regorixa.com/sitemap.xml

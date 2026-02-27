@@ -1,0 +1,22 @@
+[
+  {
+    "id": "716cad1a-3e6e-4c7d-8f16-53a0cecb125e",
+    "plan": "advanced",
+    "orderType": "plan",
+    "amount": 200,
+    "network": "TRC20",
+    "wallet": "TLxLQ2fcsWZQfxPqHr3whE9JioCPRyRwEE",
+    "txid": "ecdab5ffeab2e33fc39fd3b3c2d0396f63cefee2bbc7816d395afd4a7274f1ba",
+    "txidNorm": "ecdab5ffeab2e33fc39fd3b3c2d0396f63cefee2bbc7816d395afd4a7274f1ba",
+    "userEmail": "regorixa@gmail.com",
+    "status": "Approved",
+    "statusText": "Approved",
+    "createdAt": "2026-02-27T14:03:44.742Z",
+    "updatedAt": "2026-02-27T14:03:49.698Z",
+    "etaText": "1–6 hours",
+    "etaMinAt": "2026-02-27T15:03:44.742Z",
+    "etaMaxAt": "2026-02-27T20:03:44.742Z",
+    "profits": [],
+    "isFree": false
+  }
+]

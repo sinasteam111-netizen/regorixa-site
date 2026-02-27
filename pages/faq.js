@@ -1,74 +1,178 @@
+import { useMemo, useState } from "react";
+import Head from "next/head";
+import Nav from "../components/Nav";
 import { useLanguage } from "../context/LanguageContext";
+import translations from "../translations";
 
-export default function FAQ() {
-  const { dir } = useLanguage();
-
-  const faqs = [
-    {
-      q: "How does REGORIXA generate revenue to pay profits?",
-      a: "REGORIXA generates revenue through a combination of algorithmic execution systems (trading automation) and a professional trading team using diversified strategies across liquid markets. Risk is managed through position sizing, exposure limits, and strategy diversification. Returns depend on market conditions and are not guaranteed.",
-    },
-    {
-      q: "Do investors share trading losses with REGORIXA?",
-      a: "Market performance can fluctuate. REGORIXA applies structured risk controls to reduce downside exposure; however, all investing involves risk, and losses may occur. We prioritize capital preservation practices, but outcomes cannot be guaranteed.",
-    },
-    {
-      q: "What plans are available?",
-      a: "REGORIXA offers two plans: Base Plan and Advanced Plan. Each plan has different subscription requirements and target return ranges.",
-    },
-    {
-      q: "What is the minimum investment for the Base Plan?",
-      a: "The minimum investment for the Base Plan is 100 USDT.",
-    },
-    {
-      q: "What is the minimum investment for the Advanced Plan?",
-      a: "The minimum investment for the Advanced Plan is 300 USDT.",
-    },
-    {
-      q: "What is the expected monthly return for the Advanced Plan?",
-      a: "The Advanced Plan targets an estimated 5%–7% monthly return based on strategy performance. Returns may vary and are not guaranteed.",
-    },
-    {
-      q: "When can I withdraw my principal?",
-      a: "The principal is locked for the first 2 months after investment. After receiving the second monthly profit, users may request a withdrawal within the allowed request window (as shown in the platform rules).",
-    },
-    {
-      q: "How long does withdrawal processing take?",
-      a: "Approved withdrawal requests are processed within 24 hours.",
-    },
-  ];
-
+function AccordionItem({ q, a, dir, isOpen, onToggle }) {
   return (
     <div
-      className="container"
-      dir={dir}
-      style={{ textAlign: dir === "rtl" ? "right" : "left" }}
+      style={{
+        borderRadius: 14,
+        border: "1px solid rgba(255,255,255,0.12)",
+        background: "rgba(255,255,255,0.03)",
+        overflow: "hidden",
+      }}
     >
-      <h1 style={{ marginBottom: 8 }}>FAQ</h1>
-      <p style={{ opacity: 0.85, marginTop: 0, marginBottom: 18 }}>
-        Common questions about REGORIXA. If you need support, contact us.
-      </p>
+      <button
+        onClick={onToggle}
+        style={{
+          width: "100%",
+          padding: "14px 16px",
+          background: "transparent",
+          border: "none",
+          cursor: "pointer",
+          color: "rgba(255,255,255,0.92)",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          gap: 12,
+          textAlign: dir === "rtl" ? "right" : "left",
+          fontSize: 15,
+          fontWeight: 700,
+        }}
+        aria-expanded={isOpen}
+      >
+        <span>{q}</span>
+        <span
+          style={{
+            display: "inline-flex",
+            width: 28,
+            height: 28,
+            borderRadius: 10,
+            alignItems: "center",
+            justifyContent: "center",
+            border: "1px solid rgba(255,255,255,0.12)",
+            background: isOpen ? "rgba(255,255,255,0.08)" : "rgba(255,255,255,0.03)",
+            fontSize: 16,
+            lineHeight: 1,
+          }}
+        >
+          {isOpen ? "−" : "+"}
+        </span>
+      </button>
 
-      <div style={{ display: "grid", gap: 14 }}>
-        {faqs.map((item, idx) => (
-          <div
-            key={idx}
-            style={{
-              padding: 16,
-              borderRadius: 14,
-              border: "1px solid rgba(255,255,255,0.12)",
-              background: "rgba(255,255,255,0.03)",
-            }}
-          >
-            <h3 style={{ margin: 0, marginBottom: 8, fontSize: 16 }}>
-              {item.q}
-            </h3>
-            <p style={{ margin: 0, opacity: 0.92, lineHeight: 1.65 }}>
-              {item.a}
-            </p>
-          </div>
-        ))}
-      </div>
+      {isOpen && (
+        <div
+          style={{
+            padding: "0 16px 14px 16px",
+            color: "rgba(255,255,255,0.86)",
+            lineHeight: 1.7,
+            fontSize: 14,
+          }}
+        >
+          {a}
+        </div>
+      )}
     </div>
   );
 }
+
+function stripText(x) {
+  // FAQPage schema بهتره plain text باشه
+  return String(x ?? "")
+    .replace(/<[^>]*>/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+export default function FAQ() {
+  const { lang, dir } = useLanguage();
+  const base = translations.en;
+  const current = translations[lang] || base;
+
+  // fallback
+  const faq = current.faq || base.faq;
+
+  // آکاردئون: فقط یکی باز باشد (حرفه‌ای‌تر)
+  const [openKey, setOpenKey] = useState(null);
+
+  const toggle = (key) => {
+    setOpenKey((prev) => (prev === key ? null : key));
+  };
+
+  // ✅ FAQ Schema فقط برای EN (برای اینکه گوگل درست بفهمه)
+  const faqJsonLd = useMemo(() => {
+    if (lang !== "en") return null;
+
+    const sections = Array.isArray(faq?.sections) ? faq.sections : [];
+    const items = sections.flatMap((sec) => (Array.isArray(sec?.items) ? sec.items : []));
+
+    const mainEntity = items
+      .map((it) => {
+        const q = stripText(it?.q);
+        const a = stripText(it?.a);
+        if (!q || !a) return null;
+
+        return {
+          "@type": "Question",
+          name: q,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: a,
+          },
+        };
+      })
+      .filter(Boolean)
+      .slice(0, 50); // گوگل معمولاً بهتره تعداد خیلی زیاد نباشه
+
+    if (mainEntity.length === 0) return null;
+
+    return {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity,
+    };
+  }, [faq, lang]);
+
+  return (
+    <div className="container" dir={dir} style={{ textAlign: dir === "rtl" ? "right" : "left" }}>
+      <Head>
+        {/* Schema مخصوص FAQ */}
+        {faqJsonLd && (
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+          />
+        )}
+      </Head>
+
+      <Nav />
+
+      <div style={{ marginTop: 22 }}>
+        <h1 style={{ margin: 0, fontSize: 26 }}>{faq?.title || "FAQ"}</h1>
+        <p style={{ marginTop: 10, opacity: 0.85, lineHeight: 1.7, maxWidth: 820 }}>
+          {faq?.intro || ""}
+        </p>
+      </div>
+
+      <div style={{ marginTop: 18, display: "grid", gap: 18 }}>
+        {(faq?.sections || []).map((sec, sIdx) => (
+          <div key={sIdx}>
+            <h2 style={{ margin: "6px 0 10px 0", fontSize: 16, opacity: 0.95 }}>
+              {sec.title}
+            </h2>
+
+            <div style={{ display: "grid", gap: 12 }}>
+              {sec.items.map((it, iIdx) => {
+                const key = `${sIdx}-${iIdx}`;
+                return (
+                  <AccordionItem
+                    key={key}
+                    q={it.q}
+                    a={it.a}
+                    dir={dir}
+                    isOpen={openKey === key}
+                    onToggle={() => toggle(key)}
+                  />
+                );
+              })}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div style={{ height: 26 }} />
+    </div>
+  );
+};
